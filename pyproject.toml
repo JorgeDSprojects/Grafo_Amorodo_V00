@@ -1,7 +1,19 @@
 [project]
-name = "grafo-amorodo-v00"
+name = "story-factory-ai"
 version = "0.1.0"
-description = "Add your description here"
+description = "Generador agéntico de cuentos con control de calidad y persistencia"
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.11"
+dependencies = [
+    "langgraph",           # El motor del flujo
+    "langchain-openai",    # Integración con modelos de OpenAI
+    "langchain-core",      # Abstracciones base
+    "python-dotenv",       # Gestión de variables de entorno (.env)
+    "pydantic",            # Validación de datos (crucial para producción)
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",              # Para nuestros tests unitarios
+    "langsmith",           # Para observabilidad y debug en producción
+]
