@@ -23,6 +23,7 @@ def run_test():
     # 3. Inspeccionamos los resultados
     print("\n--- [RESULTADO DEL TEST] ---")
     print(f"💡 Idea Generada: \n{final_state.get('idea')}")
+    print(f"📖 Borrador del Cuento: \n{final_state.get('story_draft')}")
     print(f"\n📈 Contador de Revisiones: {final_state.get('revision_count')}")
     
     if final_state.get('idea'):

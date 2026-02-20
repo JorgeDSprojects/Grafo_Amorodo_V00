@@ -2,21 +2,22 @@ from langgraph.graph import StateGraph, END
 from story_factory.state import StoryState
 from story_factory.nodes.setup import setup_node
 from story_factory.nodes.ideator import idea_generator_node
+from story_factory.nodes.writer import writer_node # <-- Importar nuevo nodo
 
 def create_story_graph():
-    # 1. Crear el constructor del grafo con nuestro State
     workflow = StateGraph(StoryState)
 
-    # 2. Añadir los nodos definidos
+    # 1. Añadir los nodos
     workflow.add_node("setup", setup_node)
     workflow.add_node("ideator", idea_generator_node)
+    workflow.add_node("writer", writer_node) # <-- Añadir al flujo
 
-    # 3. Establecer las conexiones (Edges)
+    # 2. Definir las aristas (edges)
     workflow.set_entry_point("setup")
     workflow.add_edge("setup", "ideator")
-    workflow.add_edge("ideator", END) # De momento termina aquí
+    workflow.add_edge("ideator", "writer") # De ideator pasamos a writer
+    workflow.add_edge("writer", END)        # De momento terminamos aquí
 
     return workflow.compile()
 
-# Instancia para exportar
 app = create_story_graph()
