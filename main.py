@@ -25,6 +25,8 @@ def run_test():
     print(f"💡 Idea Generada: \n{final_state.get('idea')}")
     print(f"📖 Borrador del Cuento: \n{final_state.get('story_draft')}")
     print(f"\n📈 Contador de Revisiones: {final_state.get('revision_count')}")
+    print(f"🏷️ Título Final: \n{final_state.get('final_title')}")
+    print(f"📝 Descripción Final: \n{final_state.get('final_description')}")
     
     if final_state.get('idea'):
         print("\n✅ TEST EXITOSO: El maletín ha pasado por los nodos correctamente.")
@@ -32,4 +34,16 @@ def run_test():
         print("\n❌ TEST FALLIDO: La idea no se generó.")
 
 if __name__ == "__main__":
+    # --- GENERACIÓN DEL DIAGRAMA ---
+    # Lo colocamos aquí para que se genere siempre antes de correr el test
+    try:
+        with open("graph_diagram.png", "wb") as f:
+            f.write(app.get_graph().draw_mermaid_png())
+        print("🖼️ Diagrama del grafo guardado como 'graph_diagram.png'")
+    except Exception as e:
+        # En entornos de producción, es posible que falten dependencias de dibujo (como pygraphviz)
+        print(f"⚠️ Nota: No se pudo generar el diagrama visual ({e}).")
+        print("   Asegúrate de tener instaladas las dependencias necesarias si deseas la imagen.")
+
+    # Ejecutar la prueba de los nodos
     run_test()

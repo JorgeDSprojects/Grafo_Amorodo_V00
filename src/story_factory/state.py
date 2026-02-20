@@ -26,6 +26,7 @@ class StoryState(TypedDict):
     
     # Fase 5: Entrega
     final_title: Optional[str]
+    final_description: Optional[str] # <-- Añadimos este campo
     
     # Control de flujo y BBDD
     past_story_references: List[str]   # IDs o títulos previos
