@@ -18,7 +18,12 @@ def run_test():
 
     # 2. Ejecutamos el grafo
     # Al usar thread_id (opcional aquí) simulamos una sesión real
-    final_state = app.invoke(inputs)
+    # CONFIGURACIÓN DE PERSISTENCIA
+    # El thread_id permite recuperar el maletín si el proceso se detiene
+    config = {"configurable": {"thread_id": "usuario_123_cuento_001"}}
+
+    # Ejecutamos el grafo pasando la configuración
+    final_state = app.invoke(inputs, config=config)
 
     # 3. Inspeccionamos los resultados
     print("\n--- [RESULTADO DEL TEST] ---")
