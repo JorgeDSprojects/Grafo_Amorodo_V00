@@ -17,8 +17,12 @@ IDEA_PROMPT = ChatPromptTemplate.from_messages([
 def idea_generator_node(state: StoryState):
     print("--- [FASE 2]: GENERANDO IDEA CREATIVA ---")
     
-    model = get_model(temperature=0.9) # Más creativo para las ideas
+    # Extraemos la configuración. Si no viene nada, usamos valores por defecto.
+    configurable = config.get("configurable", {})
+    model_name = configurable.get("model_name", "gpt-4o-mini")
+    temp = configurable.get("temperature", 0.9) # Más creativo para ideas
     
+    model = get_model(model_name=model_name, temperature=temp)
     # Creamos la cadena LCEL
     chain = IDEA_PROMPT | model
     

@@ -20,7 +20,13 @@ def run_test():
     # Al usar thread_id (opcional aquí) simulamos una sesión real
     # CONFIGURACIÓN DE PERSISTENCIA
     # El thread_id permite recuperar el maletín si el proceso se detiene
-    config = {"configurable": {"thread_id": "usuario_123_cuento_001"}}
+    config = {
+        "configurable": {
+            "thread_id": "sesion_pro_001",
+            "model_name": "gpt-4o",  # <--- ¡Cambiamos el cerebro aquí!
+            "temperature": 0.8
+        }
+    }
 
     # Ejecutamos el grafo pasando la configuración
     final_state = app.invoke(inputs, config=config)
